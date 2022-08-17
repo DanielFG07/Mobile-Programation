@@ -5,9 +5,10 @@ import Api from './components/Api';
 
 export default function App() {
   const [cep, setCep] = useState(0);
+  const [inputCep, setInputCep] = useState(0);
 	async function carregaCep(){ 	
-	const response = await Api.get('ws/'+cep+'/json/');
-		setCep(response);
+	const response = await Api.get('ws/'+inputCep+'/json/');
+		setCep(response.data);
 	}
 	return (
 
@@ -17,7 +18,7 @@ export default function App() {
 		  <TextInput
 			  placeholder="Digite seu cep..."
 			  style={styles.input}
-			  onChangeText={(data)=>setCep(data)}/>
+			  onChangeText={(data)=>setInputCep(data)}/>
 		  <TouchableOpacity style={styles.botao}
 			  onPress={carregaCep}>
 		  <Text style={styles.TextoB}>Buscar</Text>
